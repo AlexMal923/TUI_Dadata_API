@@ -64,9 +64,12 @@ class SetConfig(npyscreen.FormBaseNew):
         self.exit_button.add_handlers(exit_handler)
 
     def start_search(self, _input=None):
-        self.parentApp.my_client.token = self.token.value or _input
+        self.parentApp.my_client.token = self.token.value
         self.parentApp.my_client.sug_size = int(self.sug_size.value)
         self.parentApp.my_client.language = ['ru', 'en'][self.language.value[0]]
+        if any([ord('А') <= ord(i) <= ord('я') for i in self.parentApp.my_client.token]):
+            npyscreen.notify_confirm(f"Произошла ошибка:\nAPI-ключ содержит недопустимые символы", title="Упс!", wrap=True, editw=1)
+            return
         auth_passed, err = self.parentApp.my_client.log_in()
         if auth_passed:
             if not self.user_config:
