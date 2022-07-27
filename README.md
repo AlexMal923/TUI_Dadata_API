@@ -7,15 +7,19 @@
 
 ## Инструкция
 ### 1. Регистрация в сервисе Dadata
-Для получения токена (API-ключа) Вам необходимо зарегистрироваться в сервисе, после чего необходимые данные будут доступны в Вашем личном кабинете по ссылке: [dadata.ru](https://dadata.ru/profile/#info).  
+Для получения API-ключа Вам необходимо зарегистрироваться в сервисе, после чего необходимые данные будут доступны в Вашем личном кабинете по ссылке: [dadata.ru](https://dadata.ru/profile/#info).  
 ### 2. Скачать и запустить программу
-Необходимо скачать этот файл из репозитория - [DadataAPI.exe](https://github.com/AlexMal923/TUI_Dadata_API/raw/master/DadataAPI.exe)
+Необходимо скачать и запустить скомпилированный файл из репозитория - [DadataAPI.exe](https://github.com/AlexMal923/TUI_Dadata_API/raw/master/DadataAPI.exe)
+### 3. Настройка программы
+При первом запуске необходимо ввести полученный на первом этапе API-ключ.  
+Чтобы вставить текст в поле терминала, используйте комбинацию клавиш **`Ctrl + Shift + V`**.  
+Навигация в программе осуществялется с помошью стрелок :arrow_up::arrow_down::arrow_left::arrow_right:
+![2022-07-27 (10)](https://user-images.githubusercontent.com/84757904/181282692-66630de4-1240-4d4c-8a52-36d8e147fe13.png)
 
 
-![2022-07-27 (2)](https://user-images.githubusercontent.com/84757904/181256348-7a3d588a-6b7c-4317-8e58-00ef9151ec72.png)
+
+![2022-07-27 (7)](https://user-images.githubusercontent.com/84757904/181279083-7b4fae5b-7d95-4d45-8f38-5e312a3b3d9b.png)
 
 
-![2022-07-27 (4)](https://user-images.githubusercontent.com/84757904/181257116-744200bb-eb1d-479b-9809-3b320174293c.png)
 
-
-![2022-07-27 (1)](https://user-images.githubusercontent.com/84757904/181256217-9a592783-f2c8-4fd9-9aa1-65f64ace8b33.png)
+![2022-07-27 (8)](https://user-images.githubusercontent.com/84757904/181279107-4b38c702-8181-43da-ad87-a8af88c7e127.png)
