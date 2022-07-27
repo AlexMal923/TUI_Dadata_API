@@ -46,7 +46,7 @@ class SetConfig(npyscreen.FormBaseNew):
             self.user_token = self.user_config[0][1]
             self.user_language = self.user_config[0][2]
 
-        self.token = self.add(npyscreen.TitleText, name='Токен:', value=self.user_token, use_two_lines=False)
+        self.token = self.add(npyscreen.TitleText, name='API-ключ:', value=self.user_token, use_two_lines=False)
         self.sug_size = self.add(npyscreen.TitleSlider, name='Кол-во адресов в подсказке:', value=10, rely=5,
                                  lowest=2, out_of=20, use_two_lines=True)
         self.language = self.add(npyscreen.TitleSelectOne, name='Язык поиска адреса:',
