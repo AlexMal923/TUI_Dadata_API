@@ -16,6 +16,12 @@ class ButtonConfig(npyscreen.ButtonPress):
         self.parent.parentApp.switchForm('MAIN')
 
 
+class ButtonExit(npyscreen.ButtonPress):
+    """Кнопка выхода"""
+    def whenPressed(self):
+        self.parent.parentApp.exit()
+
+
 class ButtonAddress(npyscreen.ButtonPress):
     """Кнопка со строкой адреса для получения координат"""
     def whenPressed(self):
@@ -40,22 +46,25 @@ class SetConfig(npyscreen.FormBaseNew):
             self.user_token = self.user_config[0][1]
             self.user_language = self.user_config[0][2]
 
-        self.token = self.add(npyscreen.TitleText, name='Токен:', value=self.user_token, use_two_lines=True)
+        self.token = self.add(npyscreen.TitleText, name='Токен:', value=self.user_token, use_two_lines=False)
         self.sug_size = self.add(npyscreen.TitleSlider, name='Кол-во адресов в подсказке:', value=10, rely=5,
                                  lowest=2, out_of=20, use_two_lines=True)
         self.language = self.add(npyscreen.TitleSelectOne, name='Язык поиска адреса:',
                                  value='en' == self.user_language, values=['ru', 'en'], scroll_exit=True, rely=8)
         self.search_button = self.add(ButtonSearch, name='Перейти к поиску', rely=12, relx=40)
+        self.exit_button = self.add(ButtonExit, name='Выход', rely=13, relx=40)
         # exit handlers
         exit_handler = self.parentApp.exit_handler
         self.add_handlers(exit_handler)
         self.token.add_handlers(exit_handler)
+        self.token.add_handlers({ascii.CR: self.start_search})
         self.sug_size.add_handlers(exit_handler)
         self.language.add_handlers(exit_handler)
         self.search_button.add_handlers(exit_handler)
+        self.exit_button.add_handlers(exit_handler)
 
-    def start_search(self):
-        self.parentApp.my_client.token = self.token.value
+    def start_search(self, _input=None):
+        self.parentApp.my_client.token = self.token.value or _input
         self.parentApp.my_client.sug_size = int(self.sug_size.value)
         self.parentApp.my_client.language = ['ru', 'en'][self.language.value[0]]
         auth_passed, err = self.parentApp.my_client.log_in()
@@ -93,12 +102,14 @@ class SearchAddress(npyscreen.FormBaseNew):
 
     def create(self):
         self.address = self.add(npyscreen.TitleText, name='Введите адрес:', value='', use_two_lines=False)
-        self.to_config_button = self.add(ButtonConfig, name='Настройки', relx=30, rely=3)
+        self.to_config_button = self.add(ButtonConfig, name='Настройки', relx=30, rely=4)
+        self.exit_button = self.add(ButtonExit, name='Выход', relx=30, rely=5)
 
         # exit handlers
         exit_handler = self.parentApp.exit_handler
         self.add_handlers(exit_handler)
         self.to_config_button.add_handlers(exit_handler)
+        self.exit_button.add_handlers(exit_handler)
         self.address.add_handlers(exit_handler)
         self.address.add_handlers({ascii.CR: self.search})  # enter key action
 
@@ -111,12 +122,15 @@ class Suggestions(npyscreen.FormBaseNew):
         for i in range(len(result)):
             self.add(ButtonAddress,
                          name=f"{str(i + 1).rjust(2)}. {result[i].get('value', '')}").add_handlers(exit_handler)
-        search_button = self.add(ButtonSearch, name='Назад к поиску')
+        self.search_button = self.add(ButtonSearch, name='Назад к поиску')
+        self.exit_button = self.add(ButtonExit, name='Выход')
+        self.exit_button.add_handlers(exit_handler)
+        self.search_button.add_handlers(exit_handler)
 
 
 class MyApplication(npyscreen.NPSAppManaged):
     """Менеджер приложений"""
-    def exit(self, _input):
+    def exit(self):
         exit(0)
 
     def onStart(self):
