@@ -105,8 +105,8 @@ class SearchAddress(npyscreen.FormBaseNew):
 
     def create(self):
         self.address = self.add(npyscreen.TitleText, name='Введите адрес:', value='', use_two_lines=False)
-        self.to_config_button = self.add(ButtonConfig, name='Настройки', relx=30, rely=4)
-        self.exit_button = self.add(ButtonExit, name='Выход', relx=30, rely=5)
+        self.to_config_button = self.add(ButtonConfig, name='Настройки', relx=40, rely=4)
+        self.exit_button = self.add(ButtonExit, name='Выход', relx=40, rely=5)
 
         # exit handlers
         exit_handler = self.parentApp.exit_handler
@@ -125,8 +125,8 @@ class Suggestions(npyscreen.FormBaseNew):
         for i in range(len(result)):
             self.add(ButtonAddress,
                          name=f"{str(i + 1).rjust(2)}. {result[i].get('value', '')}").add_handlers(exit_handler)
-        self.search_button = self.add(ButtonSearch, name='Назад к поиску')
-        self.exit_button = self.add(ButtonExit, name='Выход')
+        self.search_button = self.add(ButtonSearch, name='Назад к поиску', relx=40)
+        self.exit_button = self.add(ButtonExit, name='Выход', relx=40)
         self.exit_button.add_handlers(exit_handler)
         self.search_button.add_handlers(exit_handler)
 
