@@ -8,7 +8,8 @@
 ## Инструкция
 ### 1. Регистрация в сервисе Dadata
 Для получения токена (API-ключа) Вам необходимо зарегистрироваться в сервисе, после чего необходимые данные будут доступны в Вашем личном кабинете по ссылке: [dadata.ru](https://dadata.ru/profile/#info).  
-
+### 2. Скачать и запустить программу
+Необходимо скачать этот файл из репозитория - [DadataAPI.exe](https://github.com/AlexMal923/TUI_Dadata_API/raw/master/DadataAPI.exe)
 
 
 ![2022-07-27 (2)](https://user-images.githubusercontent.com/84757904/181256348-7a3d588a-6b7c-4317-8e58-00ef9151ec72.png)
